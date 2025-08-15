@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PCInputHandler : IInputHandler
 {
-    public event Action<float, float> OnMove;
+    public event Action<Vector2> OnMove;
     public event Action<bool> OnShoot;
 
     private bool lastShootState = false;
@@ -12,7 +12,7 @@ public class PCInputHandler : IInputHandler
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
-        OnMove?.Invoke(horizontal, vertical);
+        OnMove?.Invoke(new Vector2(horizontal, vertical));
 
         bool shoot = Input.GetMouseButton(0);
         if (shoot != lastShootState)

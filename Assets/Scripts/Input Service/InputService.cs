@@ -1,22 +1,23 @@
 using System;
+using UnityEngine;
 
 public class InputService : IUpdateService
 {
-    public event Action<float, float> OnMove;
+    public event Action<Vector2> OnMove;
     public event Action<bool> OnShoot;
 
-    private IInputHandler _inputHandler;
+    private IInputHandler _currentInputHandler;
 
     public InputService()
     {
-        _inputHandler = new PCInputHandler();
+        _currentInputHandler = new PCInputHandler();
 
-        _inputHandler.OnMove += (x, y) => OnMove?.Invoke(x, y);
-        _inputHandler.OnShoot += (state) => OnShoot?.Invoke(state);
+        _currentInputHandler.OnMove += (direction) => OnMove?.Invoke(direction);
+        _currentInputHandler.OnShoot += (state) => OnShoot?.Invoke(state);
     }
 
     public void OnUpdate()
     {
-        _inputHandler.Update();
+        _currentInputHandler.Update();
     }
 }
