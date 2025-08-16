@@ -4,19 +4,19 @@ using Zenject;
 
 public class BootstrapState : IState
 {
-    private readonly GameStateMachine _gameStateMachine;
+    private readonly StateMachine _stateMachine;
     private readonly DiContainer _container;
 
-    public BootstrapState(GameStateMachine gameStateMachine, DiContainer container)
+    public BootstrapState(StateMachine stateMachine, DiContainer container)
     {
-        _gameStateMachine = gameStateMachine;
+        _stateMachine = stateMachine;
         _container = container;
     }
 
     public void Enter()
     {
         RegusterServices();
-        _gameStateMachine.Enter<LoadProgressState>();
+        _stateMachine.Enter<LoadProgressState>();
     }
 
     public void Exit()
@@ -27,6 +27,7 @@ public class BootstrapState : IState
     private void RegusterServices()
     {
         _container.BindInterfacesAndSelfTo<InputService>().AsSingle();
+        _container.Bind<SceneLoader>().AsSingle();
 
         CreateTickManager();
     }

@@ -1,19 +1,23 @@
 using System;
 using UnityEngine;
+using Zenject;
 
 public class LoadLevelState : IState
 {
-    private readonly GameStateMachine _gameStateMachine;
+    private readonly StateMachine _stateMachine;
+    private readonly SceneLoader _sceneLoader;
+    private readonly LevelConfig _levelConfig;
 
-    public LoadLevelState(GameStateMachine gameStateMachine)
+    public LoadLevelState(StateMachine stateMachine, SceneLoader sceneLoader, LevelConfig levelConfig)
     {
-        _gameStateMachine = gameStateMachine;
+        _stateMachine = stateMachine;
+        _sceneLoader = sceneLoader;
+        _levelConfig = levelConfig;
     }
 
     public void Enter()
     {
         LoadLevel();
-        _gameStateMachine.Enter<GameLoopState>();
     }
 
     public void Exit()
@@ -23,6 +27,11 @@ public class LoadLevelState : IState
 
     private void LoadLevel()
     {
-        Debug.Log($"Level Loaded");
+        _sceneLoader.Load(_levelConfig.EnvironmentSceneName, true, OnLoaded);
+    }
+
+    private void OnLoaded()
+    {
+        _stateMachine.Enter<GameLoopState>();
     }
 }

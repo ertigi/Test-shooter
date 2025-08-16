@@ -3,17 +3,17 @@ using UnityEngine;
 
 public class LoadProgressState : IState
 {
-    private readonly GameStateMachine _gameStateMachine;
+    private readonly StateMachine _stateMachine;
 
-    public LoadProgressState(GameStateMachine gameStateMachine)
+    public LoadProgressState(StateMachine gameStateMachine)
     {
-        _gameStateMachine = gameStateMachine;
+        _stateMachine = gameStateMachine;
     }
 
     public void Enter()
     {
         LoadSaves();
-        _gameStateMachine.Enter<LoadMetaState>();
+        _stateMachine.Enter<LoadMetaState>();
     }
 
     public void Exit()
