@@ -9,7 +9,6 @@ public class SceneReference
     public string ScenePath => _scenePath;
 
 #if UNITY_EDITOR
-    // Имя сцены без пути
     public string SceneName
     {
         get

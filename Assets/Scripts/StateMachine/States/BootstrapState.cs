@@ -28,6 +28,7 @@ public class BootstrapState : IState
     {
         _container.BindInterfacesAndSelfTo<InputService>().AsSingle();
         _container.Bind<SceneLoader>().AsSingle();
+        _container.Bind<CursorService>().AsSingle();
 
         CreateTickManager();
     }

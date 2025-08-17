@@ -1,22 +1,29 @@
 using UnityEngine;
 using System;
+using Zenject;
+using UnityEngine.Windows;
 
 public class PlayerController
 {
-    private readonly CharacterControllerBase _characterController;
-    private readonly InputService _inputService;
-
-    private float _health;
-    public float Health => _health;
-
     public event Action<float> OnHealthChanged;
     public event Action OnDied;
 
-    public PlayerController(CharacterControllerBase characterController, InputService inputService)
+    private readonly CharacterControllerBase _characterController;
+    private readonly InputService _inputService;
+    private readonly CameraObject _cameraObject;
+    private float _health;
+
+    public float Health => _health;
+
+    public PlayerController(CharacterSkinsContainer skinsContainer, InputService inputService, CameraObject cameraObject)
     {
-        _characterController = characterController;
+        _characterController = UnityEngine.Object.Instantiate(skinsContainer.Player);
+
         _inputService = inputService;
+        _cameraObject = cameraObject;
         _health = 100f;
+
+        _cameraObject.SetTraget(_characterController.CameraTarget);
 
         _inputService.OnMove += OnMoveInput;
         _inputService.OnShoot += OnShoot;
@@ -24,9 +31,20 @@ public class PlayerController
         _characterController.OnTakeDamage += TakeDamage;
     }
 
-    private void OnMoveInput(Vector2 move)
+    private void OnMoveInput(Vector2 input)
     {
-        _characterController.SetMoveInput(move);
+        Vector3 cameraForward = _cameraObject.CameraTransform.forward;
+        Vector3 cameraRight = _cameraObject.CameraTransform.right;
+
+        cameraForward.y = 0f;
+        cameraRight.y = 0f;
+
+        cameraForward.Normalize();
+        cameraRight.Normalize();
+
+        Vector3 moveDirection = cameraForward * input.y + cameraRight * input.x;
+
+        _characterController.SetMoveInput(new Vector2(moveDirection.x, moveDirection.z));
     }
 
     private void OnShoot(bool isShooting)

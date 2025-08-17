@@ -14,7 +14,11 @@ public class CharacterControllerBase : MonoBehaviour
     [Header("Skin Settings")]
     [SerializeField] private CharacterSkin _baseSkinPrefab;
 
+    [Header("Camera Target")]
+    [SerializeField] private Transform _cameraTarget;
+
     public WeaponMountPoint WeaponMount => _currentSkin?.WeaponMount;
+    public Transform CameraTarget => _cameraTarget;
 
     private NavMeshAgent _navMeshAgent;
     private CharacterSkin _currentSkin;

@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27a5bb67668652e47a170f39893e4bf5, type: 3}
+  m_Name: Character Skins Container
+  m_EditorClassIdentifier: 
+  _player: {fileID: 1621874125983556081, guid: adc9e21e52b1e30498d1cd1103fc4910, type: 3}
+  _bots: []

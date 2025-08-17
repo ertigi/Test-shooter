@@ -5,19 +5,25 @@ using Zenject;
 public class LoadLevelState : IState
 {
     private readonly StateMachine _stateMachine;
+    private readonly DiContainer _container;
     private readonly SceneLoader _sceneLoader;
     private readonly LevelConfig _levelConfig;
+    private readonly CameraContainer _cameraContainer;
 
-    public LoadLevelState(StateMachine stateMachine, SceneLoader sceneLoader, LevelConfig levelConfig)
+    public LoadLevelState(StateMachine stateMachine, DiContainer container, SceneLoader sceneLoader, LevelConfig levelConfig, CameraContainer cameraContainer)
     {
         _stateMachine = stateMachine;
+        _container = container;
         _sceneLoader = sceneLoader;
         _levelConfig = levelConfig;
+        _cameraContainer = cameraContainer;
     }
 
     public void Enter()
     {
         LoadLevel();
+        CreateCamera();
+        CreatePlayer();
     }
 
     public void Exit()
@@ -26,8 +32,19 @@ public class LoadLevelState : IState
     }
 
     private void LoadLevel()
-    {
+    { 
         _sceneLoader.Load(_levelConfig.EnvironmentSceneName, true, OnLoaded);
+    }
+
+    private void CreateCamera()
+    {
+        var cameraObject = UnityEngine.Object.Instantiate(_cameraContainer.CameraObject);
+        _container.Bind<CameraObject>().FromInstance(cameraObject).AsSingle();
+    }
+
+    private void CreatePlayer()
+    {
+        _container.Bind<PlayerController>().AsSingle().NonLazy();
     }
 
     private void OnLoaded()

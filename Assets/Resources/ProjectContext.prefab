@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 8902919406599057453}
   - component: {fileID: 3620544174121188636}
   - component: {fileID: 3755866127387691478}
+  - component: {fileID: -1931313218692708194}
+  - component: {fileID: 3320352289611677332}
   - component: {fileID: 8805244300842628776}
   m_Layer: 0
   m_Name: ProjectContext
@@ -49,6 +51,8 @@ MonoBehaviour:
   _scriptableObjectInstallers: []
   _monoInstallers:
   - {fileID: 3755866127387691478}
+  - {fileID: -1931313218692708194}
+  - {fileID: 3320352289611677332}
   - {fileID: 8805244300842628776}
   _installerPrefabs: []
   _parentNewObjectsUnderContext: 1
@@ -77,6 +81,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelConfig: {fileID: 11400000, guid: cdc3ab906255d024cab232b76b17346d, type: 2}
+--- !u!114 &-1931313218692708194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8697442289813230649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c1fa3e889a6de64196b2c83ab2d8716, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _skinContainer: {fileID: 11400000, guid: 8f488629a115cce418b05d193dc4fb6a, type: 2}
+--- !u!114 &3320352289611677332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8697442289813230649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56a2cab3ed45fb34ebcdeed452c56a22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cameraContainer: {fileID: 11400000, guid: 6f1d7f3e319be73488e67621cc02ae2b, type: 2}
 --- !u!114 &8805244300842628776
 MonoBehaviour:
   m_ObjectHideFlags: 0
