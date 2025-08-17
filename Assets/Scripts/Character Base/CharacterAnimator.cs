@@ -6,6 +6,7 @@ public class CharacterAnimator : MonoBehaviour
 
     private static readonly int MoveParam = Animator.StringToHash("MoveSpeed");
     private static readonly int ShootParam = Animator.StringToHash("Shoot");
+    private static readonly int SpawnParam = Animator.StringToHash("IsSpawn");
 
     private void Awake()
     {
@@ -20,6 +21,11 @@ public class CharacterAnimator : MonoBehaviour
     public void PlayShoot()
     {
         _animator.SetTrigger(ShootParam);
+    }
+
+    public void Spawn()
+    {
+        _animator.SetTrigger(SpawnParam);
     }
 
     public void Enable(bool enable)

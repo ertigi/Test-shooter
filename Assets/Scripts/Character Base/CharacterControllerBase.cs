@@ -52,7 +52,13 @@ public class CharacterControllerBase : MonoBehaviour
 
         if (direction.sqrMagnitude > 0.0001f)
         {
-            _navMeshAgent.Move(direction.normalized * _moveSpeed * Time.deltaTime);
+            Vector3 velocity = direction.normalized * _moveSpeed;
+            _navMeshAgent.velocity = velocity;
+            _navMeshAgent.Move(velocity * Time.deltaTime);
+        }
+        else
+        {
+            _navMeshAgent.velocity = Vector3.zero;
         }
     }
 
@@ -61,6 +67,7 @@ public class CharacterControllerBase : MonoBehaviour
         if (_currentSkin?.Animator != null)
         {
             float speedPercent = _navMeshAgent.velocity.magnitude / _moveSpeed;
+
             _currentSkin.Animator.SetMoveSpeed(speedPercent);
         }
     }
@@ -79,6 +86,16 @@ public class CharacterControllerBase : MonoBehaviour
             _currentSkin.Hitbox.Enable(enable);
             _currentSkin.Animator.Enable(enable);
         }
+    }
+
+    public void RotateSkin(Vector3 targetDirection)
+    {
+        if (_currentSkin == null || targetDirection.sqrMagnitude < 0.001f)
+            return;
+
+        targetDirection.y = 0;
+        Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+        _currentSkin.transform.rotation = Quaternion.Slerp(_currentSkin.transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime * 10f);
     }
 
     public void PlayShootAnimation()

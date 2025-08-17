@@ -1,7 +1,5 @@
-using UnityEngine;
 using System;
-using Zenject;
-using UnityEngine.Windows;
+using UnityEngine;
 
 public class PlayerController
 {
@@ -45,6 +43,7 @@ public class PlayerController
         Vector3 moveDirection = cameraForward * input.y + cameraRight * input.x;
 
         _characterController.SetMoveInput(new Vector2(moveDirection.x, moveDirection.z));
+        _characterController.RotateSkin(cameraForward);
     }
 
     private void OnShoot(bool isShooting)
