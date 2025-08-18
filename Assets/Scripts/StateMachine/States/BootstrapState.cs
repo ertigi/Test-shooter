@@ -31,6 +31,8 @@ public class BootstrapState : IState
         _container.Bind<CursorService>().AsSingle();
         _container.BindInterfacesAndSelfTo<BulletService>().AsSingle();
         _container.Bind<WeaponFactory>().AsSingle();
+        _container.Bind<BotFactory>().AsSingle();
+        _container.BindInterfacesAndSelfTo<BotController>().AsSingle();
 
         CreateTickManager();
     }

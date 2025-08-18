@@ -45,6 +45,7 @@ public class LoadLevelState : IState
     private void CreatePlayer()
     {
         _container.Bind<PlayerController>().AsSingle().NonLazy();
+        _container.Resolve<BotFactory>().SetPlayerTransform(_container.Resolve<PlayerController>().Transform);
     }
 
     private void OnLoaded()

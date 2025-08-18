@@ -13,6 +13,7 @@ public class PlayerController
     private Weapon _weapon;
     private float _health;
 
+    public Transform Transform => _characterController.transform;
     public float Health => _health;
 
     public PlayerController(CharacterSkinsContainer skinsContainer, InputService inputService, CameraObject cameraObject, WeaponFactory weaponFactory)
@@ -83,4 +84,9 @@ public class PlayerController
         _inputService.OnShoot -= OnShoot;
         _characterController.OnTakeDamage -= TakeDamage;
     }
+}
+
+public class Player : MonoBehaviour
+{
+
 }

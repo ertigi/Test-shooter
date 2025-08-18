@@ -5,8 +5,16 @@ using System.Collections.Generic;
 public class CharacterSkinsContainer : ScriptableObject
 {
     [SerializeField] private CharacterControllerBase _player;
-    [SerializeField] private List<CharacterControllerBase> _bots;
+    [SerializeField] private List<CharacterSkin> _bots;
+    [SerializeField] private Bot _botPrafab;
 
     public CharacterControllerBase Player => _player;
-    public List<CharacterControllerBase> Bots => _bots;
+    public List<CharacterSkin> Bots => _bots;
+    public Bot BotPrafab => _botPrafab;
+
+    public CharacterSkin GetRandomBotSkin()
+    {
+        int rand = Random.Range(0, _bots.Count);
+        return _bots[rand];
+    }
 }

@@ -17,12 +17,14 @@ public class CharacterControllerBase : MonoBehaviour
     [Header("Camera Target")]
     [SerializeField] private Transform _cameraTarget;
 
-    public WeaponMountPoint WeaponMount => _currentSkin?.WeaponMount;
-    public Transform CameraTarget => _cameraTarget;
-
     private NavMeshAgent _navMeshAgent;
     private CharacterSkin _currentSkin;
     private Vector2 _moveInput;
+
+    public WeaponMountPoint WeaponMount => _currentSkin?.WeaponMount;
+    public Transform CameraTarget => _cameraTarget;
+    public CharacterSkin Skin => _currentSkin;
+
 
     private void Awake()
     {
@@ -72,6 +74,11 @@ public class CharacterControllerBase : MonoBehaviour
     public void SetMoveInput(Vector2 input)
     {
         _moveInput = Vector2.ClampMagnitude(input, 1f);
+    }
+
+    public void SetDestination(Vector3 position)
+    {
+        _navMeshAgent.SetDestination(position);
     }
 
     public void EnableController(bool enable)
