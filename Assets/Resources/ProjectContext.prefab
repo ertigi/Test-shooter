@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3755866127387691478}
   - component: {fileID: -1931313218692708194}
   - component: {fileID: 3320352289611677332}
+  - component: {fileID: 2579915133985435003}
   - component: {fileID: 8805244300842628776}
   m_Layer: 0
   m_Name: ProjectContext
@@ -53,6 +54,7 @@ MonoBehaviour:
   - {fileID: 3755866127387691478}
   - {fileID: -1931313218692708194}
   - {fileID: 3320352289611677332}
+  - {fileID: 2579915133985435003}
   - {fileID: 8805244300842628776}
   _installerPrefabs: []
   _parentNewObjectsUnderContext: 1
@@ -107,6 +109,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameraContainer: {fileID: 11400000, guid: 6f1d7f3e319be73488e67621cc02ae2b, type: 2}
+--- !u!114 &2579915133985435003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8697442289813230649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32a326ac33e986a4db67aa2971817754, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weaponContainer: {fileID: 11400000, guid: 769d5415a9eba8b43ae37ae66659393e, type: 2}
+  _bulletPrefab: {fileID: 1061347269088453719, guid: d0b21170a89585d449a0606622009b36,
+    type: 3}
 --- !u!114 &8805244300842628776
 MonoBehaviour:
   m_ObjectHideFlags: 0

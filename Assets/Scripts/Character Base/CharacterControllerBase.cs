@@ -30,10 +30,7 @@ public class CharacterControllerBase : MonoBehaviour
         _navMeshAgent.speed = _moveSpeed;
         _navMeshAgent.angularSpeed = _rotationSpeed;
         _navMeshAgent.updateRotation = false;
-    }
 
-    private void Start()
-    {
         if (_baseSkinPrefab != null)
             ApplySkin(_baseSkinPrefab);
         else

@@ -29,6 +29,8 @@ public class BootstrapState : IState
         _container.BindInterfacesAndSelfTo<InputService>().AsSingle();
         _container.Bind<SceneLoader>().AsSingle();
         _container.Bind<CursorService>().AsSingle();
+        _container.BindInterfacesAndSelfTo<BulletService>().AsSingle();
+        _container.Bind<WeaponFactory>().AsSingle();
 
         CreateTickManager();
     }

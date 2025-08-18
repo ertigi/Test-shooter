@@ -9,19 +9,24 @@ public class PlayerController
     private readonly CharacterControllerBase _characterController;
     private readonly InputService _inputService;
     private readonly CameraObject _cameraObject;
+    private readonly WeaponFactory _weaponFactory;
+    private Weapon _weapon;
     private float _health;
 
     public float Health => _health;
 
-    public PlayerController(CharacterSkinsContainer skinsContainer, InputService inputService, CameraObject cameraObject)
+    public PlayerController(CharacterSkinsContainer skinsContainer, InputService inputService, CameraObject cameraObject, WeaponFactory weaponFactory)
     {
         _characterController = UnityEngine.Object.Instantiate(skinsContainer.Player);
 
         _inputService = inputService;
         _cameraObject = cameraObject;
+        _weaponFactory = weaponFactory;
         _health = 100f;
 
         _cameraObject.SetTraget(_characterController.CameraTarget);
+
+        _weapon = _weaponFactory.CreateWeapon(WeaponType.Rifle, _characterController.WeaponMount.Mount);
 
         _inputService.OnMove += OnMoveInput;
         _inputService.OnShoot += OnShoot;
@@ -48,7 +53,10 @@ public class PlayerController
 
     private void OnShoot(bool isShooting)
     {
-        // _weapon.SetShooting(isShooting);
+        if(isShooting)
+            _weapon.StartShooting();
+        else
+            _weapon.StopShooting();
 
         if (isShooting)
             _characterController.PlayShootAnimation();
